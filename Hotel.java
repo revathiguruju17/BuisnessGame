@@ -1,11 +1,11 @@
-public class Hotel extends Cell {
+class Hotel extends Cell {
     int hotelID;
     private  String ownerName;
     boolean statusOfHotel;
     private int hotelRent ;
     private int hotelWorth;
 
-    public Hotel(int hotelID) {
+    Hotel(int hotelID) {
         this.hotelID=hotelID;
         this.ownerName ="";
         this.statusOfHotel = false;

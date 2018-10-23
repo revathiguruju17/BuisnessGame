@@ -21,7 +21,7 @@ class BusinessGame {
                 player.position += diceoutput[diceIndex];
                 diceIndex += 1;
                 if (player.position >= grid.length) {
-                    player.position =  player.position-grid.length;
+                    player.position =  player.position-grid.length-1;
                 }
                 doBusiness(grid[player.position], player, players, hotels);
             }

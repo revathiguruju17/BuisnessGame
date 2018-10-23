@@ -4,7 +4,7 @@ public class BusinessGameDriver {
     }
 
     private static void setupGame() {
-        String cellElements = "0EEJHETJTEEHJTHEEJHETJTEEHJTHJEEJHETJTEEHJTEHE";
+        String cellElements = "EEJHETJTEEHJTHEEJHETJTEEHJTHJEEJHETJTEEHJTEHE";
         char[] grid = cellElements.toCharArray();
         OutputDriver.printTheMessage1();
         int numberOfPlayers = InputDriver.scanTheInputAsInteger();

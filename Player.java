@@ -6,7 +6,7 @@
 
     Player(String ID) {
         this.ID = ID;
-        this.position = 0;
+        this.position = -1;
         this.money = 1000;
         this.numberOfHotelsBought = 0;
     }
