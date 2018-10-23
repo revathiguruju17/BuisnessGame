@@ -1,5 +1,5 @@
 public class Hotel extends Cell {
-    private int hotelID;
+    int hotelID;
     private  String ownerName;
     boolean statusOfHotel;
     private int hotelRent ;
