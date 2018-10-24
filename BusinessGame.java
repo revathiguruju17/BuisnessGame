@@ -3,33 +3,36 @@ import java.util.List;
 
 class BusinessGame {
 
-    static void startGame(char[] grid, int numberOfPlayers, int[] diceoutput) {
-        int numberOfChancesToEachPlayer = 10;
+    static void startGame(char[] grid, List<Player> players, int[] diceOutput, int numberOfChancesToEachPlayer) {
+        int diceIndex = 0;
         List<Hotel> hotels = new ArrayList<>();
-        List<Player> players = new ArrayList<>();
         for (int i = 0; i < grid.length; i++) {
             if (grid[i] == 'H') {
                 hotels.add(new Hotel(i));
             }
         }
-        for (int i = 0; i < numberOfPlayers; i++) {
-            players.add(new Player("player" + i));
-        }
-        int diceIndex = 0;
         for (int i = 0; i < numberOfChancesToEachPlayer; i++) {
             for (Player player : players) {
-                player.position += diceoutput[diceIndex];
+                player.position += diceOutput[diceIndex];
                 diceIndex += 1;
                 if (player.position >= grid.length) {
-                    player.position =  player.position-grid.length-1;
+                    player.position =  player.position-grid.length;
                 }
                 doBusiness(grid[player.position], player, players, hotels);
             }
         }
+
+        String winner=players.get(0).ID;
+        int maximum=0;
         for (Player player : players) {
             player.money+=(player.numberOfHotelsBought*200);
+            if(maximum<player.money){
+                maximum=player.money;
+                winner=player.ID;
+            }
             OutputDriver.printTheMessage2(player.ID,player.money);
         }
+        OutputDriver.printTheMessage3(winner);
     }
 
     private static void doBusiness(char cellElement, Player player, List<Player> players, List<Hotel> hotels) {
@@ -37,10 +40,10 @@ class BusinessGame {
             case 'E':
                 break;
             case 'J':
-                player.subtractMoneyFromThePlayer(new Jail().getFineAmount());
+                player.money-=new Jail().getFineAmount();
                 break;
             case 'T':
-                player.addMoneyToThePlayer(new Treasure().getTreasureValue());
+                player.money+=new Treasure().getTreasureValue();
                 break;
             case 'H':
                 Hotel hotel = getHotel(hotels, player.position);
@@ -48,13 +51,13 @@ class BusinessGame {
                 if (!statusOfHotel && player.money >= 200) {
                     hotel.setOwnerName(player.ID);
                     hotel.setStatusOfHotel();
-                    player.subtractMoneyFromThePlayer(hotel.getHotelWorth());
-                    player.addAnotherHotelToThePlayerAccount();
+                    player.money-=hotel.getHotelWorth();
+                    player.numberOfHotelsBought+=1;
                 }
                 if (statusOfHotel && !hotel.getOwnerName().equals(player.ID)) {
-                    player.subtractMoneyFromThePlayer(hotel.getHotelRent());
+                    player.money-=hotel.getHotelRent();
                     Player ownerOfTheHotel = getOwnerOfTheHotel(players, hotel.getOwnerName());
-                    ownerOfTheHotel.addMoneyToThePlayer(hotel.getHotelRent());
+                    ownerOfTheHotel.money+=hotel.getHotelRent();
                 }
                 break;
 
