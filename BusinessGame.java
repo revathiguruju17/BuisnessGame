@@ -46,7 +46,6 @@ class BusinessGame {
                 Player owner = getOwnerOfTheHotel(hotel.getOwnerName(),players);
                 owner.money+= hotel.getHotelRent();
             }
-
         }
     }
 
