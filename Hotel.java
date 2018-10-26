@@ -1,38 +1,39 @@
 class Hotel extends Cell {
-    int hotelID;
-    private  String ownerName;
+    int hotelNumber;
+    private String ownerName;
     boolean statusOfHotel;
-    private int hotelRent ;
+    private int hotelRent;
     private int hotelWorth;
 
-    Hotel(int hotelID) {
-        this.hotelID=hotelID;
-        this.ownerName ="";
+    Hotel(int hotelNumber) {
+        this.hotelNumber = hotelNumber;
+        this.ownerName = "";
         this.statusOfHotel = false;
         this.hotelRent = 50;
         this.hotelWorth = 200;
     }
 
-    void setOwnerName(String playerID){
+    void setOwnerName(String playerID) {
         ownerName = playerID;
     }
 
-    void setStatusOfHotel(){
-        this.statusOfHotel =true;
+    void setStatusOfHotel() {
+        this.statusOfHotel = true;
     }
 
-    boolean getStatusOfHotel(){
+    boolean getStatusOfHotel() {
         return this.statusOfHotel;
     }
 
-    String getOwnerName(){
+    String getOwnerName() {
         return this.ownerName;
     }
 
-    int getHotelRent(){
+    int getHotelRent() {
         return this.hotelRent;
     }
-    int getHotelWorth(){
+
+    int getHotelWorth() {
         return this.hotelWorth;
     }
 }
