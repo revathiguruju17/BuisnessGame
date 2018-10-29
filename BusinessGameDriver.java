@@ -6,18 +6,18 @@ public class BusinessGameDriver {
         setupGame();
     }
 
-    static void setupGame() {
-        String cellElements = "EEJHETJTEEHT";
+    private static void setupGame() {
+        String cellElements = "EEJHETJTEEHJTHEEJHETJTEEHJTHJEEJHETJTEEHJTEHE";
         OutputDriver.printTheMessage( "Enter the number of Players" );
         int numberOfPlayers = InputDriver.scanTheInputAsInteger();
-        int[] diceOutput = {4, 4, 4, 6, 7, 8, 5, 11, 10, 12, 2, 7};
         List<Player> players = new ArrayList<>();
         for (int i = 0, j = 1; i < numberOfPlayers; i++, j++) {
             players.add( new Player( "player" + j ) );
         }
-        int numberOfChancesForEachPlayer = 4;
-        BusinessGame.startGame( players, diceOutput, numberOfChancesForEachPlayer, Grid.setUpGrid(cellElements));
+        OutputDriver.printTheMessage( "Enter the number of chances for each player" );
+        int numberOfChancesForEachPlayer = InputDriver.scanTheInputAsInteger();
+        Grid grid = new Grid();
+        BusinessGame.startGame( players, numberOfChancesForEachPlayer, grid.setUpGrid( cellElements ) );
     }
-
 }
 

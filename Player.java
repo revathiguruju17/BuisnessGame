@@ -1,4 +1,4 @@
-class Player{
+class Player {
     final String ID;
     int position;
     int money;
@@ -17,6 +17,18 @@ class Player{
 
     int compareTo(Player comparePlayerMoney) {
         int compareMoney = (comparePlayerMoney).getPlayerMoney( comparePlayerMoney );
-        return compareMoney-this.money;
+        return compareMoney - this.money;
+    }
+
+    void addHotelMoneyToActualMoney() {
+        this.money += (this.numberOfHotelsBought * 200);
+    }
+
+    public String toString() {
+        return this.ID + " " + this.money;
+    }
+
+    int rollDice(){
+        return new Dice().getDiceOutput();
     }
 }

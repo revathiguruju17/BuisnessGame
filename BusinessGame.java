@@ -2,29 +2,26 @@ import java.util.List;
 
 class BusinessGame {
 
-    static void startGame(List<Player> players, int[] diceOutput, int numberOfChancesToEachPlayer, List<Cell> grid) {
-        int diceIndex = 0;
+    static void startGame(List<Player> players, int numberOfChancesToEachPlayer, List<Cell> grid) {
         for (int i = 0; i < numberOfChancesToEachPlayer; i++) {
             for (Player player : players) {
-                player.position += diceOutput[diceIndex];
-                diceIndex += 1;
+                player.position += player.rollDice();
                 if (player.position >= grid.size()) {
                     player.position = player.position - grid.size();
                 }
-                doBusiness( grid.get( player.position ), player, players);
+                doBusiness( grid.get( player.position ), player );
             }
         }
         for (Player player : players) {
-            player.money += (player.numberOfHotelsBought * 200);
+            player.addHotelMoneyToActualMoney();
         }
         players.sort( Player::compareTo );
         for (Player player : players) {
-            OutputDriver.printTheMessage( player.ID + " " + player.money );
+            OutputDriver.printTheMessage( player.toString() );
         }
-
     }
 
-    private static void doBusiness(Cell cell, Player player, List<Player> players) {
+    private static void doBusiness(Cell cell, Player player) {
         if (cell instanceof Empty) {
         } else if (cell instanceof Treasure) {
             Treasure treasure = (Treasure) cell;
@@ -32,34 +29,19 @@ class BusinessGame {
         } else if (cell instanceof Jail) {
             Jail jail = (Jail) cell;
             player.money -= jail.getFineAmount();
-        }
-        else{
+        } else {
             Hotel hotel = (Hotel) cell;
-            if(!hotel.getStatusOfHotel() && player.money>=200){
-                hotel.setOwnerName( player.ID );
-                player.numberOfHotelsBought+=1;
-                player.money-= hotel.getHotelWorth();
+            if (!hotel.getStatusOfHotel() && player.money >= 200) {
+                hotel.setOwner( player );
+                player.numberOfHotelsBought += 1;
+                player.money -= hotel.getHotelWorth();
                 hotel.setStatusOfHotel();
-            }
-            else if(hotel.getStatusOfHotel() && !hotel.getOwnerName().equals( player.ID )){
-                player.money-=hotel.getHotelRent();
-                Player owner = getOwnerOfTheHotel(hotel.getOwnerName(),players);
-                owner.money+= hotel.getHotelRent();
+            } else if (hotel.getStatusOfHotel() && !hotel.getOwner().equals( player )) {
+                player.money -= hotel.getHotelRent();
+                hotel.owner.money += hotel.getHotelRent();
             }
         }
     }
-
-    private static Player getOwnerOfTheHotel(String ownerName, List<Player> players) {
-        Player owner=new Player( "" );
-        for(Player player: players){
-            if(player.ID.equals( ownerName )){
-                 owner = player;
-                 break;
-            }
-        }
-        return owner;
-    }
-
 }
 
 

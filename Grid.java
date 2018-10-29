@@ -2,8 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
-    static List<Cell> setUpGrid(String cellElements) {
-        List<Cell> grid = new ArrayList<>();
+    private List<Cell> grid;
+
+    List<Cell> setUpGrid(String cellElements) {
+        grid = new ArrayList<>();
         for (int i = 0; i < cellElements.length(); i++) {
             switch (cellElements.charAt( i )) {
                 case 'E':
@@ -19,10 +21,15 @@ public class Grid {
                     grid.add( treasure );
                     break;
                 case 'H':
-                    Cell hotel = new Hotel( i );
+                    Cell hotel = new Hotel();
                     grid.add( hotel );
             }
         }
         return grid;
     }
+
+    public Cell getCellinTheGrid(int cellPosition) {
+        return grid.get( cellPosition );
+    }
+
 }
