@@ -1,3 +1,5 @@
 class Cell {
+    void doTask() {
 
+    }
 }

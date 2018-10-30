@@ -5,7 +5,7 @@ class Jail extends Cell {
         this.jailFine = 150;
     }
 
-    int getFineAmount() {
-        return this.jailFine;
+    void doTask(Player player) {
+        player.money-=this.jailFine;
     }
 }

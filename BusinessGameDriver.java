@@ -7,7 +7,7 @@ public class BusinessGameDriver {
     }
 
     private static void setupGame() {
-        String cellElements = "EEJHETJTEEHJTHEEJHETJTEEHJTHJEEJHETJTEEHJTEHE";
+        String cellElements = "EEJHETJTHTEJT";
         OutputDriver.printTheMessage( "Enter the number of Players" );
         int numberOfPlayers = InputDriver.scanTheInputAsInteger();
         List<Player> players = new ArrayList<>();
@@ -16,8 +16,8 @@ public class BusinessGameDriver {
         }
         OutputDriver.printTheMessage( "Enter the number of chances for each player" );
         int numberOfChancesForEachPlayer = InputDriver.scanTheInputAsInteger();
-        Grid grid = new Grid();
-        BusinessGame.startGame( players, numberOfChancesForEachPlayer, grid.setUpGrid( cellElements ) );
+        Board grid = new Board();
+        BusinessGame.startGame( players, numberOfChancesForEachPlayer, grid.setBoard( cellElements ) );
     }
 }
 

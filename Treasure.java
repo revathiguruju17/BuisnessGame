@@ -6,7 +6,7 @@ class Treasure extends Cell {
         this.treasureValue = 200;
     }
 
-    int getTreasureValue() {
-        return this.treasureValue;
+    void doTask(Player player) {
+        player.money += this.treasureValue;
     }
 }
