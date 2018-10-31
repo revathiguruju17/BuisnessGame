@@ -13,16 +13,18 @@ class BusinessGame {
             }
         }
         for (Player player : players) {
-            player.addHotelMoneyToActualMoney();
+            player.addHotelWorthToPlayerMoney();
         }
-        players.sort( Player::compareTo );
+        players.sort(Player::compareTo);
         for (Player player : players) {
-            OutputDriver.printTheMessage( player.toString() );
+            OutputDriver.printTheMessage(player.toString());
         }
     }
 
     private static void doBusiness(Cell cell, Player player) {
         if (cell instanceof Empty) {
+            Empty empty = (Empty) cell;
+            empty.doTask();
         } else if (cell instanceof Treasure) {
             Treasure treasure = (Treasure) cell;
             treasure.doTask( player );

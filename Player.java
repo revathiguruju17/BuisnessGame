@@ -20,7 +20,7 @@ class Player {
         return compareMoney - this.money;
     }
 
-    void addHotelMoneyToActualMoney() {
+    void addHotelWorthToPlayerMoney() {
         this.money += (this.numberOfHotelsBought * 200);
     }
 

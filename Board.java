@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+class Board {
     private List<Cell> grid;
 
     List<Cell> setBoard(String cellElements) {
