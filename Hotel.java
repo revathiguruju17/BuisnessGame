@@ -1,26 +1,40 @@
-class Hotel extends Cell {
+class Hotel implements Cell {
     private Player owner;
-    private boolean statusOfHotel;
     private int hotelRent;
     private int hotelWorth;
 
     Hotel() {
         this.owner = null;
-        this.statusOfHotel = false;
         this.hotelRent = 50;
         this.hotelWorth = 200;
     }
 
-    void doTask(Player player){
-        if (!this.statusOfHotel && player.money >= 200) {
-            this.owner=player;
-            player.numberOfHotelsBought += 1;
-            player.money -= this.hotelWorth;
-            this.statusOfHotel=true;
-        } else if(this.statusOfHotel && !this.owner.equals( player )) {
-            player.money -= this.hotelRent;
-            this.owner.money += this.hotelRent;
+    public void doTask(Player player) {
+        if (isHotelAvailable() && player.hasMoneyToBuyHotel(getHotelWorth())) {
+            this.owner = player;
+            player.addHotelToThePlayer();
+            player.subtractMoneyToThePlayer( getHotelWorth() );
+        } else if (isPlayer_NotAnOwner(player)) {
+            player.subtractMoneyToThePlayer( getHotelRent() );
+            this.owner.addMoneyToThePlayer( getHotelRent() );
         }
     }
+
+    private boolean isPlayer_NotAnOwner(Player player) {
+        return this.owner.equals( player );
+    }
+
+    private int getHotelRent() {
+        return this.hotelRent;
+    }
+
+    private int getHotelWorth() {
+        return this.hotelWorth;
+    }
+
+    private boolean isHotelAvailable() {
+        return this.owner == null;
+    }
+
 }
 

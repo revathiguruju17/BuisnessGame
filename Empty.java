@@ -1,2 +1,6 @@
-public class Empty extends Cell {
+public class Empty implements Cell {
+    @Override
+    public void doTask(Player player) {
+
+    }
 }

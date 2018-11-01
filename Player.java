@@ -1,8 +1,8 @@
 class Player {
-    final String ID;
+    private final String ID;
     int position;
-    int money;
-    int numberOfHotelsBought;
+    private int money;
+    private int numberOfHotelsBought;
 
     Player(String ID) {
         this.ID = ID;
@@ -13,6 +13,22 @@ class Player {
 
     private int getPlayerMoney(Player player) {
         return player.money;
+    }
+
+    void addMoneyToThePlayer(int amount) {
+        this.money += amount;
+    }
+
+    void subtractMoneyToThePlayer(int amount) {
+        this.money -= amount;
+    }
+
+    void updatePosition(int position) {
+        this.position += position;
+    }
+
+    void addHotelToThePlayer() {
+        this.numberOfHotelsBought += 1;
     }
 
     int compareTo(Player comparePlayerMoney) {
@@ -28,7 +44,11 @@ class Player {
         return this.ID + " " + this.money;
     }
 
-    int rollDice(){
+    int rollDice() {
         return new Dice().getDiceOutput();
+    }
+
+    boolean hasMoneyToBuyHotel(int hotelWorth) {
+        return this.money>=hotelWorth;
     }
 }

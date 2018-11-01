@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Board {
-    private List<Cell> grid;
 
     List<Cell> setBoard(String cellElements) {
-        grid = new ArrayList<>();
+        List<Cell> grid = new ArrayList<>();
         for (int i = 0; i < cellElements.length(); i++) {
             switch (cellElements.charAt( i )) {
                 case 'E':

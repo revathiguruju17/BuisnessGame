@@ -1,5 +1,3 @@
-class Cell {
-    void doTask() {
-
-    }
+interface Cell {
+    void doTask(Player player);
 }
