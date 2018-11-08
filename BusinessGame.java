@@ -13,10 +13,18 @@ class BusinessGame {
                 cell.doTask( player );
             }
         }
+        sortThePlayersBasedOnMoney( players );
+        displayThePlayerNameAndMoney( players );
+    }
+
+    private static void sortThePlayersBasedOnMoney(List<Player> players) {
         for (Player player : players) {
             player.addHotelWorthToPlayerMoney();
         }
         players.sort( Player::compareTo );
+    }
+
+    private static void displayThePlayerNameAndMoney(List<Player> players) {
         for (Player player : players) {
             OutputDriver.printTheMessage( player.toString() );
         }

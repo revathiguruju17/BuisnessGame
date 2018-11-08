@@ -14,14 +14,10 @@ class Hotel implements Cell {
             this.owner = player;
             player.addHotelToThePlayer();
             player.subtractMoneyToThePlayer( getHotelWorth() );
-        } else if (isPlayer_NotAnOwner(player)) {
+        } else {
             player.subtractMoneyToThePlayer( getHotelRent() );
             this.owner.addMoneyToThePlayer( getHotelRent() );
         }
-    }
-
-    private boolean isPlayer_NotAnOwner(Player player) {
-        return this.owner.equals( player );
     }
 
     private int getHotelRent() {

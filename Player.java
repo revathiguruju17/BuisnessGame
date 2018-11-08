@@ -11,8 +11,8 @@ class Player {
         this.numberOfHotelsBought = 0;
     }
 
-    private int getPlayerMoney(Player player) {
-        return player.money;
+    private int getPlayerMoney() {
+        return this.money;
     }
 
     void addMoneyToThePlayer(int amount) {
@@ -31,8 +31,8 @@ class Player {
         this.numberOfHotelsBought += 1;
     }
 
-    int compareTo(Player comparePlayerMoney) {
-        int compareMoney = (comparePlayerMoney).getPlayerMoney( comparePlayerMoney );
+    int compareTo(Player player) {
+        int compareMoney = player.getPlayerMoney();
         return compareMoney - this.money;
     }
 

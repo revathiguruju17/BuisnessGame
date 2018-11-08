@@ -8,6 +8,7 @@ class Treasure implements Cell {
     private int getTreasureValue(){
         return this.treasureValue;
     }
+
     public void doTask(Player player) {
         player.addMoneyToThePlayer( getTreasureValue());
     }

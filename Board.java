@@ -3,10 +3,10 @@ import java.util.List;
 
 class Board {
 
-    List<Cell> setBoard(String cellElements) {
+    List<Cell> setBoard(char[] cells) {
         List<Cell> grid = new ArrayList<>();
-        for (int i = 0; i < cellElements.length(); i++) {
-            switch (cellElements.charAt( i )) {
+        for (char cell:cells) {
+            switch (cell) {
                 case 'E':
                     Cell empty = new Empty();
                     grid.add( empty );

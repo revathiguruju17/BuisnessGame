@@ -11,13 +11,13 @@ public class BusinessGameTest {
     }
 
     private static void setupGame(int numberOfPlayers, int numberOfChancesForEachPlayer) {
-        String cellElements = "EEJHETJTHTEJT";
+        char cells[] = {'E','E','J','H','E','T','J','T','H','T','E','J','T'};
         List<Player> players = new ArrayList<>();
         for (int i = 0, j = 1; i < numberOfPlayers; i++, j++) {
             players.add( new Player( "player" + j ) );
         }
         Board board = new Board();
-        BusinessGame.startGame( players, numberOfChancesForEachPlayer, board.setBoard( cellElements ) );
+        BusinessGame.startGame( players, numberOfChancesForEachPlayer, board.setBoard( cells ) );
     }
 }
 
